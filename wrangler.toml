@@ -1,0 +1,11 @@
+name = "toolprobe-clef-kv-cache"
+main = "worker.js"
+compatibility_date = "2026-10-01"
+workers_dev = true
+
+[ai]
+binding = "AI"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "eef0c311d872474fbe3c9688ef75148d"

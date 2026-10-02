@@ -1,0 +1,27 @@
+{
+  "verified_at": "2026-10-02T03:37:00+02:00",
+  "url": "https://toolprobe-clef-kv-cache.rcgpt.workers.dev/precheck",
+  "note": "Regular Workers KV (not KV Instant). Publish only measured numbers.",
+  "miss": {
+    "cache": "MISS",
+    "latency_ms_total": 1209,
+    "latency_ms_model": 911,
+    "should_call": true,
+    "tool": "get_weather",
+    "confidence": 0.8087,
+    "cache_key": "8878734a4229c876"
+  },
+  "hit": {
+    "cache": "HIT",
+    "latency_ms_total": 7,
+    "latency_ms_model": 0,
+    "should_call": true,
+    "tool": "get_weather",
+    "confidence": 0.8087,
+    "cache_key": "8878734a4229c876"
+  },
+  "claims_forbidden": [
+    "do not claim KV Instant 1.6ms p99 for this Worker",
+    "do not claim Clef-flash blog ~39ms for this path"
+  ]
+}
