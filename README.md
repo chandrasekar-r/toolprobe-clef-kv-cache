@@ -4,9 +4,11 @@ Clef-flash tool-call **precheck** wrapped with **Workers KV** cache (HIT/MISS).
 
 > Decision-model precheck — not tool-calling pass/fail.
 
-Live: https://toolprobe-clef-kv-cache.rcgpt.workers.dev
+**Live (canonical):** https://clef-kv.rclabs.in
 
-Related (no KV): https://toolprobe-clef-precheck.rcgpt.workers.dev
+Related (no KV): https://clef-precheck.rclabs.in
+
+Legacy workers.dev still works but posts should use `*.rclabs.in`.
 
 ## API
 
@@ -18,23 +20,19 @@ Related (no KV): https://toolprobe-clef-precheck.rcgpt.workers.dev
 
 Returns `should_call`, `tool`, `confidence`, `cache` (`HIT`|`MISS`), `latency_ms_total`, `latency_ms_model`.
 
-Cache key: `sha256` of stable `{state, tools sorted, threshold}`.
-
-## Measured smoke (2026-10-02)
-
-Same payload, twice (live Worker):
+## Measured smoke (2026-10-02 on clef-kv.rclabs.in)
 
 | | cache | latency_ms_total | latency_ms_model | should_call | tool | confidence |
 |---|---|---:|---:|---|---|---:|
-| 1st | MISS | 1004 | 630 | true | get_weather | 0.7806 |
-| 2nd | HIT | 6 | 0 | true | get_weather | 0.7806 |
+| 1st | MISS | 842 | 466 | true | get_weather | 0.7964 |
+| 2nd | HIT | 3 | 0 | true | get_weather | 0.7964 |
 
-Uses **regular Workers KV**. KV Instant (~2ms Birthday Week) was not available on this account via API (private beta) — Instant is the upgrade path when enabled.
+Uses **regular Workers KV**. KV Instant still private beta here.
 
 ## Curl
 
 ```bash
-URL=https://toolprobe-clef-kv-cache.rcgpt.workers.dev/precheck
+URL=https://clef-kv.rclabs.in/precheck
 PAYLOAD='{"state":"User: What is the weather in Berlin right now?","tools":["get_weather","search_web","send_email"],"threshold":0.6}'
 curl -sS "$URL" -H 'content-type: application/json' -d "$PAYLOAD"
 curl -sS "$URL" -H 'content-type: application/json' -d "$PAYLOAD"
