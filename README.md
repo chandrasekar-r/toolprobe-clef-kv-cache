@@ -8,6 +8,8 @@ Clef-flash tool-call **precheck** wrapped with **Workers KV** cache (HIT/MISS).
 
 Related (no KV): https://clef-precheck.rclabs.in
 
+Also attached: https://toolprobe-clef-kv-cache.rclabs.in (alias). Prefer short host `clef-kv` in X copy.
+
 Legacy workers.dev still works but posts should use `*.rclabs.in`.
 
 ## API
