@@ -1,6 +1,48 @@
 {
-  "measured_at": "2026-10-02 Europe/Berlin",
-  "worker_url": "https://toolprobe-clef-kv-cache.rcgpt.workers.dev",
-  "miss": { "cache": "MISS", "latency_ms_total": 700, "latency_ms_model": 406 },
-  "hit": { "cache": "HIT", "latency_ms_total": 4, "latency_ms_model": 0 }
+  "verified_at": "2026-10-02T03:37:19+02:00",
+  "url": "https://toolprobe-clef-kv-cache.rcgpt.workers.dev/precheck",
+  "note": "Regular Workers KV (not KV Instant). Publish only measured numbers.",
+  "payload": {
+    "state": "User: What is the weather in Berlin right now? smoke-v2",
+    "tools": [
+      "get_weather",
+      "search_web",
+      "send_email"
+    ],
+    "threshold": 0.6
+  },
+  "miss": {
+    "cache": "MISS",
+    "latency_ms_total": 1004,
+    "latency_ms_model": 630,
+    "should_call": true,
+    "tool": "get_weather",
+    "confidence": 0.7806,
+    "cache_key": "1c7bab5d77792f72",
+    "model": "@cf/cloudflare/clef-flash"
+  },
+  "hit": {
+    "cache": "HIT",
+    "latency_ms_total": 6,
+    "latency_ms_model": 0,
+    "should_call": true,
+    "tool": "get_weather",
+    "confidence": 0.7806,
+    "cache_key": "1c7bab5d77792f72",
+    "model": "@cf/cloudflare/clef-flash"
+  },
+  "claims_forbidden": [
+    "do not claim KV Instant blog p99 (~1.6ms) for this Worker",
+    "do not claim Clef-flash blog median (~39ms) for this path",
+    "label as regular Workers KV, Instant is upgrade path when enabled"
+  ],
+  "self_eval": "PASS",
+  "checks": [
+    "GET help 200",
+    "POST MISS then HIT same payload",
+    "HIT latency_ms_model == 0",
+    "HIT total << MISS total",
+    "decision fields stable across HIT/MISS",
+    "repo public with worker.js + README + SMOKE_RESULTS.json"
+  ]
 }
